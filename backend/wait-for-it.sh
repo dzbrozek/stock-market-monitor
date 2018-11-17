@@ -127,7 +127,7 @@ do
 done
 
 if [[ "$HOST" == "" || "$PORT" == "" ]]; then
-    echoerr "Error: you need to provide a host and port to test."
+    echoerr "PageError: you need to provide a host and port to test."
     usage
 fi
 
