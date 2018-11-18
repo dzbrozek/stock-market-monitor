@@ -2,3 +2,6 @@ Django==2.0.9
 psycopg2-binary==2.7.5
 djangorestframework==3.9.0
 django-cors-headers==2.4.0
+https://github.com/RomelTorres/alpha_vantage/archive/develop.zip
+requests==2.20.1
+pytz==2018.7
