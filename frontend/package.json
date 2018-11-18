@@ -7,6 +7,7 @@
     "react-bootstrap": "^0.32.4",
     "react-debounce-input": "^3.2.0",
     "react-dom": "^16.6.3",
+    "react-refetch": "^2.0.1",
     "react-scripts": "2.1.1"
   },
   "scripts": {

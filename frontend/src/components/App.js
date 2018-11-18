@@ -3,8 +3,7 @@ import {Grid} from 'react-bootstrap';
 import ErrorBoundary from './ErrorBoundary';
 import StockMonitor from './StockMonitor';
 
-class App extends React.Component {
-  render() {
+const App = () => {
     return (
         <Grid className="app">
             <ErrorBoundary>
@@ -12,7 +11,6 @@ class App extends React.Component {
             </ErrorBoundary>
         </Grid>
     );
-  }
-}
+};
 
 export default App;

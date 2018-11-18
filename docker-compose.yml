@@ -31,8 +31,6 @@ services:
       - ./env/dev.env
     ports:
       - "3000:3000"
-    depends_on:
-      - backend
     volumes:
       - ./frontend:/app
       - frontend-modules:/app/node_modules

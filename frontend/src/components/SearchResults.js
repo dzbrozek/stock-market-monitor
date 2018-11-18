@@ -1,51 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Col, Row} from 'react-bootstrap';
+import Error from './Error';
+import {PromiseState} from 'react-refetch';
+import SearchResultList from './SearchResultList';
 
 export default class SearchResults extends React.Component {
     static propTypes = {
-        query: PropTypes.string,
-        onSelect: PropTypes.func.isRequired
+        onSelect: PropTypes.func.isRequired,
+        companySearchRequest: PropTypes.instanceOf(PromiseState).isRequired
     };
 
-    renderRows() {
-        const {onSelect} = this.props;
-        const results = [
-            {
-                symbol: 'BA',
-                name: 'The Boeing Company'
-            }, {
-                symbol: 'BABA',
-                name: 'Alibaba Group Holding Limited'
-            }, {
-                symbol: 'BAC',
-                name: 'Bank of America Corporation'
-            }
-        ];
-
-        if(!results.length) {
-            return <p>No results to display</p>
-        }
-
-        return results.map(({symbol, name}) => {
-            return <p key={symbol}
-                      onClick={() => onSelect(symbol)}>{name}</p>
-        });
-    }
-
     render() {
-        const {query} = this.props;
+        let content;
+        const {companySearchRequest, onSelect} = this.props;
 
-        if (!query) {
+        if(companySearchRequest.pending) {
             return null;
+        } else if(companySearchRequest.rejected) {
+            content = <Error message="Unable to find companies"/>
+        } else {
+            content = <SearchResultList data={companySearchRequest.value}
+                                        onSelect={onSelect}/>
         }
 
         return (
             <Row>
-                <Col sm="12">
-                    <div className="search-results">
-                        {this.renderRows()}
-                    </div>
+                <Col sm={12}>
+                    {content}
                 </Col>
             </Row>
         )

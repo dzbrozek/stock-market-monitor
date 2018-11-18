@@ -3,15 +3,19 @@ import PropTypes from 'prop-types';
 import {Col, Panel, Row} from 'react-bootstrap';
 import Loader from './Loader';
 import Error from './Error';
+import CompanyInfoDetails from './CompanyInfoDetails';
+import {PromiseState} from 'react-refetch';
 
-const CompanyInfo = ({company}) => {
-    const data = {
-        symbol: 'BA',
-        name: 'The Boeing Company',
-        website: 'https://www.boeing.com/',
-        logo: 'https://media.glassdoor.com/sql/102/boeing-squarelogo.png'
-    };
-    const {symbol, name, website, logo} = data;
+const CompanyInfo = ({companyInfoRequest}) => {
+    let content;
+
+    if(companyInfoRequest.pending) {
+        content = <Loader/>;
+    } else if(companyInfoRequest.rejected) {
+        content = <Error message="Unable to fetch company info"/>
+    } else {
+        content = <CompanyInfoDetails data={companyInfoRequest.value}/>;
+    }
 
     return (
         <Panel>
@@ -20,33 +24,7 @@ const CompanyInfo = ({company}) => {
             <Panel.Body>
                 <Row>
                     <Col sm={12}>
-                        <Loader/>
-                        <Error message="Unable to fetch company info"/>
-
-                        <p>
-                            <b className="m-r-5">Symbol:</b> {symbol}
-                        </p>
-                        <p>
-                            <b className="m-r-5">Name:</b> {name}
-                        </p>
-                        <p>
-                            <b className="m-r-5">Website:</b>
-                            {!!website ?
-                                <a href={website}>visit</a>
-                                :
-                                "N/A"
-                            }
-                        </p>
-                        <p>
-                            <b className="m-r-5">Logo:</b>
-                            {!!logo ?
-                                <img src={logo}
-                                     width={30}
-                                     height={30}/>
-                                :
-                                "N/A"
-                            }
-                        </p>
+                        {content}
                     </Col>
                 </Row>
             </Panel.Body>
@@ -55,7 +33,7 @@ const CompanyInfo = ({company}) => {
 };
 
 CompanyInfo.propTypes = {
-    company: PropTypes.string.isRequired
+    companyInfoRequest: PropTypes.instanceOf(PromiseState).isRequired
 };
 
 export default CompanyInfo;

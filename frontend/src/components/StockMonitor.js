@@ -2,11 +2,11 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 import SearchInput from './SearchInput';
 import CompanyReport from './CompanyReport';
-import SearchResults from './SearchResults';
+import SearchResults from '../containers/SearchResults';
 
 export default class StockMonitor extends React.Component {
     state = {
-        selectedCompany: 'MSFT',
+        selectedCompany: null,
         query: '',
         showSearchResults: true
     };
@@ -29,6 +29,7 @@ export default class StockMonitor extends React.Component {
 
     render() {
         const {query, selectedCompany, showSearchResults} = this.state;
+        const showAutocomplete = showSearchResults && query;
 
         return (
             <React.Fragment>
@@ -43,18 +44,14 @@ export default class StockMonitor extends React.Component {
                         <SearchInput value={query}
                                      onChange={this.changeQuery}/>
 
-                        {showSearchResults &&
+                        {showAutocomplete &&
                             <SearchResults query={query}
                                            onSelect={this.selectCompany}/>
                         }
                     </Col>
                 </Row>
 
-                <Row>
-                    <Col sm={12}>
-                        <CompanyReport company={selectedCompany}/>
-                    </Col>
-                </Row>
+                <CompanyReport company={selectedCompany}/>
             </React.Fragment>
         )
     }

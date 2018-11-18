@@ -1,16 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Col, Panel, Row} from 'react-bootstrap';
+import Loader from './Loader';
+import Error from './Error';
+import StockValuationDetails from './StockValuationDetails';
+import {PromiseState} from 'react-refetch';
 
-const StockValuation = ({company}) => {
-    const data = {
-        open: '107.0800',
-        high: '108.8800',
-        low: '106.8000',
-        price: '108.2900',
-        volume: 27412598
-    };
-    const {open, high, low, price, volume} = data;
+const StockValuation = ({companyStockValuationRequest}) => {
+    let content;
+
+    if(companyStockValuationRequest.pending) {
+        content = <Loader/>;
+    } else if(companyStockValuationRequest.rejected) {
+        content = <Error message="Unable to fetch stock valuation"/>
+    } else {
+        content = <StockValuationDetails data={companyStockValuationRequest.value}/>;
+    }
 
     return (
         <Panel>
@@ -19,21 +24,7 @@ const StockValuation = ({company}) => {
             <Panel.Body>
                 <Row>
                     <Col sm={12}>
-                        <p>
-                            <b className="m-r-5">Open:</b> {Number(open).toFixed(2)}
-                        </p>
-                        <p>
-                            <b className="m-r-5">High:</b> {Number(high).toFixed(2)}
-                        </p>
-                        <p>
-                            <b className="m-r-5">Low:</b> {Number(low).toFixed(2)}
-                        </p>
-                        <p>
-                            <b className="m-r-5">Price:</b> {Number(price).toFixed(2)}
-                        </p>
-                        <p>
-                            <b className="m-r-5">Volume:</b> {volume}
-                        </p>
+                        {content}
                     </Col>
                 </Row>
             </Panel.Body>
@@ -42,7 +33,7 @@ const StockValuation = ({company}) => {
 };
 
 StockValuation.propTypes = {
-    company: PropTypes.string.isRequired
+    companyStockValuationRequest: PropTypes.instanceOf(PromiseState).isRequired
 };
 
 export default StockValuation;
