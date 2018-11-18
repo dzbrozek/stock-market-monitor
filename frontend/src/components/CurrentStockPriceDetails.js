@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CurrentStockPrice = ({data: {is_open, price}}) => {
+const CurrentStockPriceDetails = ({data: {is_open, price}}) => {
     if(!is_open) {
         return <p className="warning">Stock market is currently closed</p>
     } else if(!price) {
@@ -15,10 +15,11 @@ const CurrentStockPrice = ({data: {is_open, price}}) => {
     )
 };
 
-CurrentStockPrice.propTypes = {
+CurrentStockPriceDetails.propTypes = {
     data: PropTypes.shape({
-        is_open: PropTypes.bool.isRequired
+        is_open: PropTypes.bool.isRequired,
+        price: PropTypes.string
     })
 };
 
-export default CurrentStockPrice;
+export default CurrentStockPriceDetails;

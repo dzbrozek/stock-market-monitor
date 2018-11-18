@@ -15,11 +15,14 @@ def timezone_offset(timezone):
 
     if minutes == 5:
         return dict(hours=hours, minutes=30)
+    elif minutes == -5:
+        return dict(hours=hours, minutes=-30)
+
     return dict(hours=hours, minutes=minutes)
 
 
 def is_market_open(company):
-    local_now = utc_now() - datetime.timedelta(**timezone_offset(company.timezone))
+    local_now = utc_now() + datetime.timedelta(**timezone_offset(company.timezone))
     if local_now.isoweekday() >= 6:
         return False
 
@@ -36,7 +39,7 @@ def company_current_price(company):
 
     try:
         local_tz = pytz.timezone(meta_data['5. Time Zone'])
-        date = utc_now().astimezone(local_tz).date()
+        date = local_tz.normalize(utc_now().astimezone(local_tz)).date()
 
         return dict(is_open=True, price=time_series[date.isoformat()]['4. close'])
     except KeyError as e:

@@ -24,7 +24,8 @@ SearchResultList.propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
         symbol: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired
-    })).isRequired
+    })).isRequired,
+    onSelect: PropTypes.func.isRequired
 };
 
 export default SearchResultList;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const StockValuationDetails = ({data: {open, high, low, price, volume}}) => {
+const StockValuationDetails = ({data: {open, high, low, price, volume, close}}) => {
     return (
         <React.Fragment>
             <p>
@@ -9,6 +9,9 @@ const StockValuationDetails = ({data: {open, high, low, price, volume}}) => {
             </p>
             <p>
                 <b className="m-r-5">High:</b> {Number(high).toFixed(2)}
+            </p>
+            <p>
+                <b className="m-r-5">Close:</b> {Number(close).toFixed(2)}
             </p>
             <p>
                 <b className="m-r-5">Low:</b> {Number(low).toFixed(2)}
@@ -29,7 +32,8 @@ StockValuationDetails.propTypes = {
         high: PropTypes.string.isRequired,
         low: PropTypes.string.isRequired,
         price: PropTypes.string.isRequired,
-        volume: PropTypes.string.isRequired
+        volume: PropTypes.string.isRequired,
+        close: PropTypes.string.isRequired
     })
 };
 

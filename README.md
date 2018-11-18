@@ -4,7 +4,7 @@ Simple app to monitor a company on a stock market
 
 ## Requirements
 
-This app is build on top of Docker so to run it you have to install [Docker](https://docs.docker.com/install/)
+This app is using Docker so make sure you have both: [Docker](https://docs.docker.com/install/)
 and [Docker Compose](https://docs.docker.com/compose/install/)
 
 # Running

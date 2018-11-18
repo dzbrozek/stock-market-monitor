@@ -13,7 +13,9 @@ const CompanyInfoDetails = ({data: {symbol, name, website, logo}}) => {
             <p>
                 <b className="m-r-5">Website:</b>
                 {!!website ?
-                    <a href={website}>visit</a>
+                    <a href={website}
+                       target="_blank"
+                       rel="noopener noreferrer">visit</a>
                     :
                     "N/A"
                 }
