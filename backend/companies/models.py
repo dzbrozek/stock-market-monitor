@@ -17,3 +17,10 @@ class Company(models.Model):
 
     class Meta:
         verbose_name_plural = 'Companies'
+
+
+class CompanyNameSuffix(models.Model):
+    suffix = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.suffix

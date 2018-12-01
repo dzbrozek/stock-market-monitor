@@ -21,12 +21,12 @@ class ClearbitAPI:
         method = 'GET'
 
         params = {
-            'query': query,
+            'query': query
         }
 
         return self.request(endpoint, method, params)
 
-    def request(self, endpoint, method, params):
+    def request(self, endpoint, method, params=None):
         response = requests.request(method,
                                     self.API_BASE_URL + endpoint,
                                     timeout=self.timeout,

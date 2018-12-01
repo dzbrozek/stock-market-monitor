@@ -13,9 +13,9 @@ logger = logging.getLogger(__name__)
 def timezone_offset(timezone):
     minutes, hours = math.modf(timezone)
 
-    if minutes == 5:
+    if minutes == 0.5:
         return dict(hours=hours, minutes=30)
-    elif minutes == -5:
+    elif minutes == -0.5:
         return dict(hours=hours, minutes=-30)
 
     return dict(hours=hours, minutes=minutes)
@@ -23,6 +23,7 @@ def timezone_offset(timezone):
 
 def is_market_open(company):
     local_now = utc_now() + datetime.timedelta(**timezone_offset(company.timezone))
+
     if local_now.isoweekday() >= 6:
         return False
 
