@@ -26,6 +26,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "prop-types": "^15.6.2"
+    "flow-bin": "^0.87.0"
   }
 }

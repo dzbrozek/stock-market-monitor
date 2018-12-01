@@ -1,7 +1,12 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
+import type {CompanyDetails} from '../types/companies';
 
-const CompanyInfoDetails = ({data: {symbol, name, website, logo}}) => {
+type Props = {
+    data: CompanyDetails
+}
+
+const CompanyInfoDetails = ({data: {symbol, name, website, logo}}: Props) => {
     return (
         <React.Fragment>
             <p>
@@ -33,15 +38,6 @@ const CompanyInfoDetails = ({data: {symbol, name, website, logo}}) => {
             </p>
         </React.Fragment>
     )
-};
-
-CompanyInfoDetails.propTypes = {
-    data: PropTypes.shape({
-        symbol: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        website: PropTypes.string,
-        logo: PropTypes.string
-    }).isRequired
 };
 
 export default CompanyInfoDetails;

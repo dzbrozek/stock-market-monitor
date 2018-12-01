@@ -1,14 +1,14 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Error = ({message}) => {
+type Props = {
+    message: string
+}
+
+const Error = ({message}: Props) => {
     return (
         <p className="error">{message}</p>
     );
-};
-
-Error.propTypes = {
-    message: PropTypes.string.isRequired
 };
 
 export default Error;

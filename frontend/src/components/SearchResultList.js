@@ -1,7 +1,13 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
+import type {CompanySearchList} from '../types/companies';
 
-const SearchResultList = ({data, onSelect}) => {
+type Props = {
+    data: CompanySearchList,
+    onSelect: (symbol: string) => void
+}
+
+const SearchResultList = ({data, onSelect}: Props) => {
     let rows;
 
     if(!data.length) {
@@ -18,14 +24,6 @@ const SearchResultList = ({data, onSelect}) => {
             {rows}
         </div>
     )
-};
-
-SearchResultList.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({
-        symbol: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
-    })).isRequired,
-    onSelect: PropTypes.func.isRequired
 };
 
 export default SearchResultList;

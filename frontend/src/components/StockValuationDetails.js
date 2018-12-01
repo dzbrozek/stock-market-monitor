@@ -1,7 +1,12 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
+import type {CompanyValuation} from '../types/companies';
 
-const StockValuationDetails = ({data: {open, high, low, price, volume, close}}) => {
+type Props = {
+    data: CompanyValuation
+}
+
+const StockValuationDetails = ({data: {open, high, low, price, volume, close}}: Props) => {
     return (
         <React.Fragment>
             <p>
@@ -24,17 +29,6 @@ const StockValuationDetails = ({data: {open, high, low, price, volume, close}}) 
             </p>
         </React.Fragment>
     )
-};
-
-StockValuationDetails.propTypes = {
-    data: PropTypes.shape({
-        open: PropTypes.string.isRequired,
-        high: PropTypes.string.isRequired,
-        low: PropTypes.string.isRequired,
-        price: PropTypes.string.isRequired,
-        volume: PropTypes.string.isRequired,
-        close: PropTypes.string.isRequired
-    })
 };
 
 export default StockValuationDetails;

@@ -1,12 +1,17 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Col, Panel, Row} from 'react-bootstrap';
 import Loader from './Loader';
 import Error from './Error';
-import {PromiseState} from 'react-refetch';
 import CurrentStockPriceDetails from './CurrentStockPriceDetails';
+import type {PromiseState} from '../types/react-refetch';
+import type {CompanyPrice} from '../types/companies';
 
-const CurrentStockPrice = ({companyCurrentPriceRequest}) => {
+type Props = {
+    companyCurrentPriceRequest: PromiseState<CompanyPrice>
+};
+
+const CurrentStockPrice = ({companyCurrentPriceRequest}: Props) => {
     let content;
 
     if(companyCurrentPriceRequest.pending) {
@@ -31,10 +36,6 @@ const CurrentStockPrice = ({companyCurrentPriceRequest}) => {
         </Panel>
 
     );
-};
-
-CurrentStockPrice.propTypes = {
-    companyCurrentPriceRequest: PropTypes.instanceOf(PromiseState).isRequired
 };
 
 export default CurrentStockPrice;

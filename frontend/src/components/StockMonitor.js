@@ -1,17 +1,24 @@
+// @flow
 import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 import SearchInput from './SearchInput';
 import CompanyReport from './CompanyReport';
 import SearchResults from '../containers/SearchResults';
 
-export default class StockMonitor extends React.Component {
+type State = {
+    selectedCompany: ?string,
+    query: string,
+    showSearchResults: boolean
+}
+
+export default class StockMonitor extends React.Component<void, State> {
     state = {
         selectedCompany: null,
         query: '',
         showSearchResults: true
     };
 
-    changeQuery = query => {
+    changeQuery = (query: string) => {
         this.setState({
             query,
             selectedCompany: null,
@@ -19,7 +26,7 @@ export default class StockMonitor extends React.Component {
         })
     };
 
-    selectCompany = symbol => {
+    selectCompany = (symbol: string) => {
         this.setState({
             selectedCompany: symbol,
             query: symbol,
@@ -51,7 +58,9 @@ export default class StockMonitor extends React.Component {
                     </Col>
                 </Row>
 
-                <CompanyReport company={selectedCompany}/>
+                {selectedCompany &&
+                    <CompanyReport company={selectedCompany}/>
+                }
             </React.Fragment>
         )
     }

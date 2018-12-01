@@ -1,12 +1,17 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Col, Panel, Row} from 'react-bootstrap';
 import Loader from './Loader';
 import Error from './Error';
 import CompanyInfoDetails from './CompanyInfoDetails';
-import {PromiseState} from 'react-refetch';
+import type {PromiseState} from '../types/react-refetch';
+import type {CompanyDetails} from '../types/companies';
 
-const CompanyInfo = ({companyInfoRequest}) => {
+type Props = {
+    companyInfoRequest: PromiseState<CompanyDetails>
+};
+
+const CompanyInfo = ({companyInfoRequest}: Props) => {
     let content;
 
     if(companyInfoRequest.pending) {
@@ -30,10 +35,6 @@ const CompanyInfo = ({companyInfoRequest}) => {
             </Panel.Body>
         </Panel>
     )
-};
-
-CompanyInfo.propTypes = {
-    companyInfoRequest: PropTypes.instanceOf(PromiseState).isRequired
 };
 
 export default CompanyInfo;

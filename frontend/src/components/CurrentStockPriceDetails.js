@@ -1,7 +1,12 @@
+// @flow
 import React from 'react';
-import PropTypes from 'prop-types';
+import type {CompanyPrice} from '../types/companies';
 
-const CurrentStockPriceDetails = ({data: {is_open, price}}) => {
+type Props = {
+    data: CompanyPrice
+}
+
+const CurrentStockPriceDetails = ({data: {is_open, price}}: Props) => {
     if(!is_open) {
         return <p className="warning">Stock market is currently closed</p>
     } else if(!price) {
@@ -13,13 +18,6 @@ const CurrentStockPriceDetails = ({data: {is_open, price}}) => {
             <b className="m-r-5">Current Price:</b> {Number(price).toFixed(2)}
         </p>
     )
-};
-
-CurrentStockPriceDetails.propTypes = {
-    data: PropTypes.shape({
-        is_open: PropTypes.bool.isRequired,
-        price: PropTypes.string
-    })
 };
 
 export default CurrentStockPriceDetails;

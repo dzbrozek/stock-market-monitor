@@ -1,7 +1,16 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import PageError from './PageError';
 
-export default class ErrorBoundary extends React.Component {
+type State = {
+    hasError: boolean
+}
+
+type Props = {
+    children: React.Node
+}
+
+export default class ErrorBoundary extends React.Component<Props, State> {
     state = {
         hasError: false
     };
@@ -12,7 +21,7 @@ export default class ErrorBoundary extends React.Component {
         }
     }
 
-    render() {
+    render(): React.Node {
         if(this.state.hasError) {
             return <PageError/>;
         }
