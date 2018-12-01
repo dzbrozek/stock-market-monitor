@@ -28,3 +28,12 @@ stock-monitor_frontend_1   npm start                       Up      0.0.0.0:3000-
 ```
 
 To see the app run `http://localhost:3000` in your web browser
+
+# Tests
+
+To run the tests use the following commands
+
+```
+docker-compose run --rm backend python manage.py test
+docker-compose run --rm frontend npm run test
+```

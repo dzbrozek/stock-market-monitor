@@ -5,3 +5,6 @@ django-cors-headers==2.4.0
 https://github.com/RomelTorres/alpha_vantage/archive/develop.zip
 requests==2.20.1
 pytz==2018.7
+factory_boy==2.11.1
+responses==0.10.4
+freezegun==0.3.11
