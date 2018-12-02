@@ -1,13 +1,19 @@
-### stock-monitor
+## Stock monitor
 
-Simple app to monitor a company on a stock market
+Simple app to monitor a company on a stock market.
 
-## Requirements
+### Stack
+
+* The app was built using Django, React and PostgreSQL
+* Stock data is provided by [Alpha Vantage](https://www.alphavantage.co/)
+* Company info is obtained through [Autocomplete API](https://clearbit.com/docs#autocomplete-api) 
+
+### Requirements
 
 This app is using Docker so make sure you have both: [Docker](https://docs.docker.com/install/)
 and [Docker Compose](https://docs.docker.com/compose/install/)
 
-# Running
+#### Running
 
 To run the app move to the app directory and call
 
@@ -29,7 +35,7 @@ stock-monitor_frontend_1   npm start                       Up      0.0.0.0:3000-
 
 To see the app run `http://localhost:3000` in your web browser
 
-# Tests
+#### Tests
 
 To run the tests use the following commands
 
