@@ -8,12 +8,12 @@ type Props = {
 }
 
 const SearchResultList = ({data, onSelect}: Props) => {
-    let rows;
+    let content;
 
     if(!data.length) {
-        rows = <p>No results to display</p>
+        content = <p>No results to display</p>
     } else {
-        rows = data.map(({symbol, name}) => {
+        content = data.map(({symbol, name}) => {
             return <p key={symbol}
                       onClick={() => onSelect(symbol)}>{name}</p>
         });
@@ -21,7 +21,7 @@ const SearchResultList = ({data, onSelect}: Props) => {
 
     return (
         <div className="search-results">
-            {rows}
+            {content}
         </div>
     )
 };
